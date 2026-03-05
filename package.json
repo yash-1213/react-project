@@ -1,0 +1,31 @@
+{
+  "name": "react-project",
+  "version": "1.0.0",
+  "description": "This is React Project by Yash Gupta",
+  "scripts": {
+    "start": "parcel index.html",
+    "build": "parcel build index.html",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yash-1213/react-project.git"
+  },
+  "keywords": [],
+  "author": "Yash Gupta",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yash-1213/react-project/issues"
+  },
+  "homepage": "https://github.com/yash-1213/react-project#readme",
+  "devDependencies": {
+    "parcel": "^2.8.3"
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "browserslist": [
+    "last 2 versions"
+  ]
+}
