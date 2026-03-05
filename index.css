@@ -67,3 +67,16 @@
     padding: 0 10px;
     cursor: pointer;
 }
+
+.filter-container {
+    display: flex;
+    padding-top: 10px;
+}
+
+.search-container {
+    margin-right: 10px;
+}
+
+.search-btn {
+    margin-right: 5px;
+}
