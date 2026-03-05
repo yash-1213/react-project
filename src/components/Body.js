@@ -1,15 +1,30 @@
 import RestroCard from "./RestroCard";
-import { useState } from "react";
-import resObj from "../utils/mockData";
+import { useEffect, useState } from "react";
+import Shimmer from "./Shimmer";
 
 const Body = () => {
   // Local State Variable - super powerful variable
-  const [listOfRestroState, setListOfRestroState] = useState(resObj);
+  const [listOfRestroState, setListOfRestroState] = useState([]);
 
   //   Another way to define state variable
   //   const res = useState(resObj);
   //   const listOfRestroState = res[0];
   //   const setListOfRestroState = res[1];
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const fetchData = async () => {
+    const data = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.63270&lng=77.21980&collection=83631&tags=layout_CCS_Pizza&sortBy=&filters=&type=rcv2&offset=0&page_type=null");
+    const json = await data.json();
+    const actualDataArr = json?.data?.cards?.map((item) => item?.card?.card?.info)?.filter((item) => item);
+    setListOfRestroState(actualDataArr);
+  };
+
+  if (!listOfRestroState.length) {
+    return <Shimmer />;
+  }
 
   return (
     <div className="body-container">
