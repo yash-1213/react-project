@@ -1,6 +1,8 @@
 import RestroCard from "./RestroCard";
 import { useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
+import { BASE_URL } from "../utils/constants";
+import { Link } from "react-router";
 
 const Body = () => {
   //   Another way to define state variable
@@ -19,9 +21,9 @@ const Body = () => {
   }, []);
 
   const fetchData = async () => {
-    const data = await fetch("https://corsproxy.io/?https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.63270&lng=77.21980&collection=83631&tags=layout_CCS_Pizza&sortBy=&filters=&type=rcv2&offset=0&page_type=null");
+    const data = await fetch(`${BASE_URL}listRestaurants`);
     const json = await data.json();
-    const actualDataArr = json?.data?.cards?.map((item) => item?.card?.card?.info)?.filter((item) => item);
+    const actualDataArr = await json?.data?.data?.cards?.filter((item) => item.card)?.[0]?.card?.card?.gridElements?.infoWithStyle?.restaurants?.map((restro) => restro?.info);
     setListOfRestroState(actualDataArr);
     setFilteredRestro(actualDataArr);
   };
@@ -72,7 +74,9 @@ const Body = () => {
       </div>
       <div className="restro-container">
         {filteredRestro.map((restro) => (
-          <RestroCard key={restro.id} resData={restro} />
+          <Link key={restro.id} to={`/restaurant/${restro.id}`}>
+            <RestroCard resData={restro} />
+          </Link>
         ))}
       </div>
     </div>
