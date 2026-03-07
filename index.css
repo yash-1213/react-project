@@ -37,6 +37,7 @@
     padding: 5px;
     margin: 5px;
     word-break: break-word;
+    min-height: 350px;
 }
 
 .restro-card:hover {
@@ -84,4 +85,8 @@
 .user-card {
     padding: 10px;
     border: 1px solid black;
+}
+
+.user-card > img {
+    width: 100px;
 }
