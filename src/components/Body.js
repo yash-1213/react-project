@@ -5,12 +5,6 @@ import { BASE_URL } from "../utils/constants";
 import { Link } from "react-router";
 
 const Body = () => {
-  //   Another way to define state variable
-  //   const res = useState(resObj);
-  //   const listOfRestroState = res[0];
-  //   const setListOfRestroState = res[1];
-
-  // Local State Variable - super powerful variable
   const [listOfRestroState, setListOfRestroState] = useState([]);
   const [filteredRestro, setFilteredRestro] = useState([]);
 
