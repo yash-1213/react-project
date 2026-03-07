@@ -1,4 +1,6 @@
-.header {
+@import "tailwindcss";
+
+/* .header {
     display: flex;
     justify-content: space-between;
     border: 1px solid #00000024;
@@ -87,6 +89,6 @@
     border: 1px solid black;
 }
 
-.user-card > img {
+.user-card>img {
     width: 100px;
-}
+} */
