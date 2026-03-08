@@ -1,4 +1,4 @@
-import RestroCard from "./RestroCard";
+import RestroCard, { withVegLabel } from "./RestroCard";
 import { useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
 import { BASE_URL } from "../utils/constants";
@@ -9,6 +9,8 @@ const Body = () => {
   const [filteredRestro, setFilteredRestro] = useState([]);
 
   const [searchTxt, setSearchTxt] = useState("");
+
+  const RestroCardVeg = withVegLabel(RestroCard);
 
   useEffect(() => {
     fetchData();
@@ -22,17 +24,18 @@ const Body = () => {
     setFilteredRestro(actualDataArr);
   };
 
+  console.log("listOfRestroState :", listOfRestroState);
   if (!listOfRestroState.length) {
     return <Shimmer />;
   }
 
   return (
     <div className="body-container">
-      <div className="filter-container">
+      <div className="flex p-4">
         <div className="search-container">
           <input
             type="text"
-            className="search-input"
+            className="border rounded-sm p-1"
             placeholder="search"
             value={searchTxt}
             onChange={(e) => {
@@ -40,7 +43,7 @@ const Body = () => {
             }}
           />
           <button
-            className="search-btn"
+            className="bg-gray-200 px-3 py-1 ml-3 rounded-sm hover:bg-gray-100 cursor-pointer"
             onClick={() => {
               const filteredRestroData = listOfRestroState?.filter((res) => res?.name.toLowerCase().includes(searchTxt.toLowerCase()));
               setFilteredRestro(filteredRestroData);
@@ -49,6 +52,7 @@ const Body = () => {
             Search
           </button>
           <button
+            className="bg-gray-200 px-3 py-1 ml-3 rounded-sm hover:bg-gray-100 cursor-pointe"
             onClick={() => {
               setFilteredRestro(listOfRestroState);
             }}
@@ -57,7 +61,7 @@ const Body = () => {
           </button>
         </div>
         <button
-          className="filter-container-btn"
+          className="bg-gray-200 px-3 py-1 ml-3 rounded-sm hover:bg-gray-100 cursor-pointe"
           onClick={() => {
             const filteredList = listOfRestroState?.filter((restro) => restro.avgRating > 4.4);
             setFilteredRestro(filteredList);
@@ -66,10 +70,10 @@ const Body = () => {
           Top Rated Restro
         </button>
       </div>
-      <div className="restro-container">
+      <div className="flex flex-wrap">
         {filteredRestro.map((restro) => (
           <Link key={restro.id} to={`/restaurant/${restro.id}`}>
-            <RestroCard resData={restro} />
+            {restro.veg ? <RestroCardVeg resData={restro} /> : <RestroCard resData={restro} />}
           </Link>
         ))}
       </div>
