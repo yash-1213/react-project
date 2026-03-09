@@ -23,14 +23,17 @@ const AppLayout = () => {
   }, []);
 
   return (
-    // <UserContext.Provider value={{ loggedInUser: userName }}>
-    <div className="app">
-      <UserContext.Provider value={{ loggedInUser: userName }}>
+    // can be default value
+    <UserContext.Provider value={{ loggedInUser: userName, setUserName }}>
+      <div className="app">
+        {/* we can do like this also */}
+        {/* <UserContext.Provider value={{ loggedInUser: "someone" }}>
+          <Header />
+        </UserContext.Provider> */}
         <Header />
-      </UserContext.Provider>
-      <Outlet />
-    </div>
-    /* </UserContext.Provider> */
+        <Outlet />
+      </div>
+    </UserContext.Provider>
   );
 };
 

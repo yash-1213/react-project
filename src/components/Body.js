@@ -1,8 +1,9 @@
 import RestroCard, { withVegLabel } from "./RestroCard";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
 import { BASE_URL } from "../utils/constants";
 import { Link } from "react-router";
+import UserContext from "../utils/UserContext";
 
 const Body = () => {
   const [listOfRestroState, setListOfRestroState] = useState([]);
@@ -11,6 +12,8 @@ const Body = () => {
   const [searchTxt, setSearchTxt] = useState("");
 
   const RestroCardVeg = withVegLabel(RestroCard);
+
+  const { loggedInUser, setUserName } = useContext(UserContext);
 
   useEffect(() => {
     fetchData();
@@ -68,6 +71,10 @@ const Body = () => {
         >
           Top Rated Restro
         </button>
+        <div className="ml-3">
+          <label>User Name :</label>
+          <input className="border border-gray-400 p-1 rounded-sm ml-2" value={loggedInUser} onChange={(e) => setUserName(e.target.value)} />
+        </div>
       </div>
       <div className="flex flex-wrap">
         {filteredRestro.map((restro) => (
