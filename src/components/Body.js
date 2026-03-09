@@ -24,7 +24,6 @@ const Body = () => {
     setFilteredRestro(actualDataArr);
   };
 
-  console.log("listOfRestroState :", listOfRestroState);
   if (!listOfRestroState.length) {
     return <Shimmer />;
   }

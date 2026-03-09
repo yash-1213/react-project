@@ -1,9 +1,5 @@
 import { CDN_URL } from "../utils/constants";
 
-const styleCard = {
-  backgroundColor: "#f0f0f0",
-};
-
 const RestroCard = (props) => {
   const { cloudinaryImageId, name, cuisines, avgRating, sla } = props?.resData;
   return (

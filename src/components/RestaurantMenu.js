@@ -1,6 +1,8 @@
 import Shimmer from "./Shimmer";
 import { useParams } from "react-router";
 import useRestaurantMenu from "../utils/useRestaurantMenu";
+import RestroCategory from "./RestroCategory";
+import { useState } from "react";
 
 const RestaurantMenu = () => {
   const { resId } = useParams();
@@ -11,26 +13,33 @@ const RestaurantMenu = () => {
    */
   const restroData = useRestaurantMenu(resId);
 
+  const [showIndex, setShowIndex] = useState(null);
+
   if (!restroData) {
     return <Shimmer />;
   }
 
-  const { name, costForTwo, cuisines } = restroData?.cards[2]?.card?.card?.info;
-  const { itemCards } = restroData.cards[4].groupedCard.cardGroupMap.REGULAR.cards[1].card.card;
+  const { name, costForTwo, cuisines } = restroData?.cards?.[2]?.card?.card?.info;
+
+  const categories = restroData?.cards?.[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards?.filter((c) => c?.card?.card?.["@type"].toLowerCase().includes("ItemCategory".toLowerCase()));
 
   return (
-    <div className="menu-container">
-      <h1>{name}</h1>
-      <p>{costForTwo}</p>
-      <h2>{cuisines.join(", ")}</h2>
-      <h2>Menu</h2>
-      <ul>
-        {itemCards?.map((item) => (
-          <li key={item?.card?.info?.id}>
-            {item?.card?.info?.name}: ₹{item?.card?.info?.price / 100}
-          </li>
-        ))}
-      </ul>
+    <div className="text-center">
+      <div className="font-bold text-2xl my-6">{name}</div>
+      <p className="font-bold text-lg">
+        {cuisines.join(", ")} - {costForTwo}
+      </p>
+      {categories.map((category, index) => (
+        // controlled component
+        <RestroCategory
+          key={category?.card?.card.title}
+          data={category?.card?.card}
+          showItems={index === showIndex && true}
+          setShowIndex={() => {
+            index !== showIndex ? setShowIndex(index) : setShowIndex(null);
+          }}
+        />
+      ))}
     </div>
   );
 };

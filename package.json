@@ -19,11 +19,11 @@
   },
   "homepage": "https://github.com/yash-1213/react-project#readme",
   "devDependencies": {
-    "parcel": "^2.8.3"
+    "parcel": "^2.8.3",
+    "react": "^18.3.1"
   },
   "dependencies": {
     "@tailwindcss/postcss": "^4.2.1",
-    "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-router-dom": "^7.13.1",
     "tailwindcss": "^4.2.1"
