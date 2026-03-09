@@ -24,6 +24,7 @@ const AppLayout = () => {
 
   return (
     // can be default value
+    // passing the state to the application so that it can be updated using state
     <UserContext.Provider value={{ loggedInUser: userName, setUserName }}>
       <div className="app">
         {/* we can do like this also */}
