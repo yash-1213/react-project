@@ -55,7 +55,7 @@ class UserClass extends React.Component {
           loggedIn User:
           <UserContext.Consumer>{({ loggedInUser }) => <h2>{loggedInUser}</h2>}</UserContext.Consumer>
         </div>
-        <img src={avatar_url} />
+        <img src={avatar_url} className="w-14" />
         <h2>Name: {login}</h2>
         <h3>Location: {location}</h3>
         <h4>Contact: @yash1112</h4>
