@@ -1,15 +1,18 @@
 import ReactDOM from "react-dom/client";
 import Header from "./components/Header";
-import Body from "./components/Body";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router";
-import Contact from "./components/Contact";
 import Error from "./components/Error";
-import RestaurantMenu from "./components/RestaurantMenu";
 import { lazy, Suspense, useEffect, useState } from "react";
 import UserContext from "./utils/UserContext";
+import { Provider } from "react-redux";
+import appStore from "./utils/appStore";
 
-const Grocery = lazy(() => import("./components/Grocery"));
+const Body = lazy(() => import("./components/Body"));
 const About = lazy(() => import("./components/About"));
+const Contact = lazy(() => import("./components/Contact"));
+const Grocery = lazy(() => import("./components/Grocery"));
+const RestaurantMenu = lazy(() => import("./components/RestaurantMenu"));
+const Cart = lazy(() => import("./components/Cart"));
 
 const AppLayout = () => {
   const [userName, setUserName] = useState();
@@ -24,17 +27,19 @@ const AppLayout = () => {
 
   return (
     // can be default value
-    // passing the state to the application so that it can be updated using state
-    <UserContext.Provider value={{ loggedInUser: userName, setUserName }}>
-      <div className="app">
-        {/* we can do like this also */}
-        {/* <UserContext.Provider value={{ loggedInUser: "someone" }}>
+    <Provider store={appStore}>
+      {/* passing the state to the application so that it can be updated using state */}
+      <UserContext.Provider value={{ loggedInUser: userName, setUserName }}>
+        <div className="app">
+          {/* we can do like this also */}
+          {/* <UserContext.Provider value={{ loggedInUser: "someone" }}>
           <Header />
         </UserContext.Provider> */}
-        <Header />
-        <Outlet />
-      </div>
-    </UserContext.Provider>
+          <Header />
+          <Outlet />
+        </div>
+      </UserContext.Provider>
+    </Provider>
   );
 };
 
@@ -45,11 +50,19 @@ const appRouter = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <Body />,
+        element: (
+          <Suspense fallback={<h1>Loading...</h1>}>
+            <Body />
+          </Suspense>
+        ),
       },
       {
         path: "/about",
-        element: <About />,
+        element: (
+          <Suspense fallback={<h1>Loading...</h1>}>
+            <About />
+          </Suspense>
+        ),
       },
       {
         path: "/contact",
@@ -69,7 +82,19 @@ const appRouter = createBrowserRouter([
       },
       {
         path: "/restaurant/:resId",
-        element: <RestaurantMenu />,
+        element: (
+          <Suspense fallback={<h1>Loading...</h1>}>
+            <RestaurantMenu />
+          </Suspense>
+        ),
+      },
+      {
+        path: "/cart",
+        element: (
+          <Suspense fallback={<h1>Loading...</h1>}>
+            <Cart />
+          </Suspense>
+        ),
       },
     ],
     errorElement: <Error />,
