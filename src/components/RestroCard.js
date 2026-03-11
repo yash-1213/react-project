@@ -3,8 +3,8 @@ import { CDN_URL } from "../utils/constants";
 const RestroCard = (props) => {
   const { cloudinaryImageId, name, cuisines, avgRating, sla } = props?.resData;
   return (
-    <div className="bg-gray-100 w-60 p-3 m-3 rounded-sm hover:bg-gray-200 min-h-70">
-      <img className="w-full h-25 rounded-sm" alt="res-logo" src={CDN_URL + cloudinaryImageId} />
+    <div className="bg-gray-100 w-50 p-3 m-3 rounded-md hover:bg-gray-200 min-h-70 shadow-md">
+      <img className="w-full h-25 rounded-md" alt="res-logo" src={CDN_URL + cloudinaryImageId} />
       <h3 className="text-lg font-bold">{name}</h3>
       <h4>{cuisines.join(", ")}</h4>
       <h4>{avgRating} stars</h4>

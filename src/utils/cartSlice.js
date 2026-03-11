@@ -6,7 +6,7 @@ const cartSlice = createSlice({
     items: [],
   },
   reducers: {
-    // what type of actions that user can do (add, delete, clarAll)
+    // what type of actions that user can do (add, delete, clearCart)
     addItem: (state, action) => {
       console.log("Action :", action);
       // mutating the state here (modifying the state directly)
@@ -17,6 +17,7 @@ const cartSlice = createSlice({
     },
     clearCart: (state, action) => {
       state.items.length = 0; // []
+      //   return {items: [] }; does the same thing as abovffe
     },
   },
 });
