@@ -19,6 +19,15 @@
   },
   "homepage": "https://github.com/yash-1213/react-project#readme",
   "devDependencies": {
+    "@babel/core": "^7.29.0",
+    "@babel/preset-env": "^7.29.0",
+    "@babel/preset-react": "^7.28.5",
+    "@testing-library/dom": "^10.4.1",
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.2",
+    "babel-jest": "^30.3.0",
+    "jest": "^30.3.0",
+    "jest-environment-jsdom": "^30.3.0",
     "parcel": "^2.8.3",
     "react": "^18.3.1"
   },
