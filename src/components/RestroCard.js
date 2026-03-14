@@ -6,7 +6,7 @@ const RestroCard = (props) => {
     <div className="bg-gray-100 w-50 p-3 m-3 rounded-md hover:bg-gray-200 min-h-70 shadow-md">
       <img className="w-full h-25 rounded-md" alt="res-logo" src={CDN_URL + cloudinaryImageId} />
       <h3 className="text-lg font-bold">{name}</h3>
-      <h4>{cuisines.join(", ")}</h4>
+      <h4>{cuisines?.join(", ")}</h4>
       <h4>{avgRating} stars</h4>
       <h4>{sla?.slaString}</h4>
     </div>
