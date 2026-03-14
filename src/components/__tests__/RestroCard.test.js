@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import RestroCard from "../RestroCard";
+import RestroCard, { withVegLabel } from "../RestroCard";
 import MOCK_DATA from "../mocks/RestroCardMock.json";
 import "@testing-library/jest-dom";
 
@@ -8,3 +8,9 @@ it("Should render Restro card component with props Data", () => {
   const restroName = screen.getByText("Pizza Paradise");
   expect(restroName).toBeInTheDocument();
 });
+
+// it("shoudl render restro card component with veg label", () => {
+//   render(withVegLabel(MOCK_DATA));
+//   const withVegLbl = screen.getByLabelText("Veg");
+//   expect(withVegLbl).toBeInTheDocument();
+// });
